@@ -1,0 +1,22 @@
+version: '3'
+services:
+  metadata:
+    build:
+      context: .
+    user: root
+    volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./lua:/lua
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      metadataserver:
+        ipv4_address: 172.172.172.172
+
+networks:
+  metadataserver:
+    driver: bridge
+    ipam:
+      config:
+      - 
+        subnet: 172.172.172.0/24
+
